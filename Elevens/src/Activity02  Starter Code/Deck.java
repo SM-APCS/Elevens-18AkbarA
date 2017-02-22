@@ -1,6 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
 
+import elevens.Card;
+
 /**
  * The Deck class represents a shuffled deck of cards.
  * It provides several operations including
@@ -31,6 +33,12 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		
+		for (int i = 0; i < ranks.length; i++){
+			Card theCard = new Card(ranks[i],suits[i],values[i]);
+			cards.add(theCard);
+		}
+		
 	}
 
 
@@ -40,6 +48,12 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(cards.size() == 0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	/**
@@ -48,6 +62,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return size;
 	}
 
 	/**
@@ -65,6 +80,13 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		
+		size--;
+		return cards.get(size + 1);
+		
+		
+		
+		
 	}
 
 	/**
