@@ -21,6 +21,7 @@ public class Deck {
 	private int size;
 
 
+	private int originalsize;
 	/**
 	 * Creates a new <code>Deck</code> instance.<BR>
 	 * It pairs each element of ranks with each element of suits,
@@ -37,6 +38,7 @@ public class Deck {
 			}
 		}
 		size = cards.size();
+		originalsize = size;
 		shuffle();
 	}
 
@@ -63,6 +65,13 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		for (int k = 51; k >0; k--){
+			int r = (int) (Math.random()*(k));
+			cards.set(r, cards.get(k));
+			cards.set(k, cards.get(r));
+
+			size = originalsize;
+		}
 	}
 
 	/**

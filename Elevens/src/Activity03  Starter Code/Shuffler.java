@@ -87,8 +87,10 @@ public class Shuffler {
 		for (int k = 51; k >0; k--){
 			int r = (int) (Math.random()*(k));
 			
-			cards[r] = cards[k];
-			cards[k] = cards[r];
+			cards.set(r, cards.get(k));
+			cards.set(k, cards.get(r));
+
+			
 		}
 	}
 }

@@ -2,8 +2,6 @@ package elevens;
 import java.util.List;
 import java.util.ArrayList;
 
-import elevens.Card;
-
 /**
  * The Deck class represents a shuffled deck of cards.
  * It provides several operations including
@@ -24,6 +22,7 @@ public class Deck {
 	private int size;
 
 
+	private int originalsize;
 	/**
 	 * Creates a new <code>Deck</code> instance.<BR>
 	 * It pairs each element of ranks with each element of suits,
@@ -33,13 +32,15 @@ public class Deck {
 	 * @param values is an array containing all of the card point values.
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		
-		for (int i = 0; i < ranks.length; i++){
-			Card theCard = new Card(ranks[i],suits[i],values[i]);
-			cards.add(theCard);
+		cards = new ArrayList<Card>();
+		for (int j = 0; j < ranks.length; j++) {
+			for (String suitString : suits) {
+				cards.add(new Card(ranks[j], suitString, values[j]));
+			}
 		}
-		
+		size = cards.size();
+		originalsize = size;
+		shuffle();
 	}
 
 
@@ -48,13 +49,7 @@ public class Deck {
 	 * @return true if this deck is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if(cards.size() == 0){
-			return true;
-		}
-		else{
-			return false;
-		}
+		return size == 0;
 	}
 
 	/**
@@ -62,7 +57,6 @@ public class Deck {
 	 * @return the number of undealt cards in this deck.
 	 */
 	public int size() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 		return size;
 	}
 
@@ -72,6 +66,14 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		for (int k = size; k > 0; k--){
+			int r = (int) (Math.random()*(k));
+			
+			cards.set(r, cards.get(k));
+			cards.set(k, cards.get(r));
+
+			size = originalsize;
+		}
 	}
 
 	/**
@@ -80,14 +82,12 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		
+		if (isEmpty()) {
+			return null;
+		}
 		size--;
-		return cards.get(size + 1);
-		
-		
-		
-		
+		Card c = cards.get(size);
+		return c;
 	}
 
 	/**
